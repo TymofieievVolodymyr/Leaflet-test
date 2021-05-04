@@ -60,11 +60,17 @@ export class MapComponent implements AfterViewInit {
       .bindPopup('Some text')
       .addTo(this.map);
 
+    const polygon = L.polygon([
+      [48.45, 35.033333],
+      [58.45, 35.033333],
+      [51.51, -0.047]
+    ]).addTo(this.map);
+
     const overlayMaps = {
       marker1: marker1,
       marker2: marker2,
+      polygon: polygon
     };
-
 
     tiles.addTo(this.map);
 
