@@ -60,11 +60,16 @@ export class MapComponent implements AfterViewInit {
       .bindPopup('Some text')
       .addTo(this.map);
 
+    const overlayMaps = {
+      marker1: marker1,
+      marker2: marker2,
+    };
+
 
     tiles.addTo(this.map);
 
     // adding two layers
-    L.control.layers(baseMap).addTo(this.map);
+    L.control.layers(baseMap, overlayMaps).addTo(this.map);
   }
 
 
