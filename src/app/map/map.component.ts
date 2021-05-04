@@ -52,6 +52,11 @@ export class MapComponent implements AfterViewInit {
       Google: googleStreets,
     };
 
+    const marker1 = L.marker([48.45, 35.033333], {draggable: true})
+      .bindPopup('Some text')
+      .addTo(this.map);
+
+
     tiles.addTo(this.map);
 
     // adding two layers
