@@ -56,6 +56,10 @@ export class MapComponent implements AfterViewInit {
       .bindPopup('Some text')
       .addTo(this.map);
 
+    const marker2 = L.marker([58.45, 35.033333], {})
+      .bindPopup('Some text')
+      .addTo(this.map);
+
 
     tiles.addTo(this.map);
 
