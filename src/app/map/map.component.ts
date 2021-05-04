@@ -1,6 +1,8 @@
 import {AfterViewInit, Component} from '@angular/core';
 import * as L from 'leaflet';
 import {ShapeService} from '../shape.service';
+import 'leaflet.markercluster';
+import {testData} from '../data/test_data';
 
 
 const iconRetinaUrl = 'assets/marker-icon-2x.png';
@@ -27,6 +29,7 @@ export class MapComponent implements AfterViewInit {
 
   private map;
   private shapes;
+  testData = testData;
 
   private initMap(): void {
 
@@ -78,13 +81,25 @@ export class MapComponent implements AfterViewInit {
 
     // adding two layers
     L.control.layers(baseMap, overlayMaps).addTo(this.map);
+
+    // adding clustering
+    const cluster = L.markerClusterGroup();
+    const geoJsonLayer = L.geoJSON(this.testData, {
+      style: function(feature) {
+        return {
+          color: 'red'
+        };
+      }
+    });
+    cluster.addLayer(geoJsonLayer);
+    cluster.addTo(this.map);
   }
 
 
   constructor(private shapeService: ShapeService) {
   }
 
-  private initStatesLayer() {
+  private initStatesLayer(): void {
     const stateLayer = L.geoJSON(this.shapes, {
       style: (feature) => ({
         weight: 3,
